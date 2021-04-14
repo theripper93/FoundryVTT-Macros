@@ -135,7 +135,7 @@ function getBonusAc(tactor){
   let effects = tactor.effects;
     for( let effect of effects){
       let d = effect.data.duration;
-      if(d.seconds == null && d.rounds == null && d.turns == null && (!effect.data.flags.dae.specialDuration || effect.data.flags.dae.specialDuration[0] == "None") || effect.data.disabled) continue;
+      if(d.seconds == null && d.rounds == null && d.turns == null && (!effect.data.flags.dae?.specialDuration || effect.data.flags.dae?.specialDuration[0] == "None") || effect.data.disabled) continue;
       for(let change of effect.data.changes){
 
         if(change.key == "data.attributes.ac.value" && change.mode == 2) bonusAC += parseInt(change.value);
