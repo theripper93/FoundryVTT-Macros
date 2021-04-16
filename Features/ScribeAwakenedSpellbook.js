@@ -18,6 +18,11 @@ Hooks.on("midi-qol.DamageRollComplete", changeDamageType);
 function changeTitle(dialog,html){
     dialog.item.options.actor.unsetFlag("world",`scribeElement`);
     const spellLevelDropdown = html.find($('select[name="level"]'));
+    html.find($('button[class="dialog-button use default"]')).click(flagDamage)
+    function flagDamage(){
+        const selectedDamage = html.find($('select[name="damageType"]'))[0].value;
+        dialog.item.options.actor.setFlag("world",`scribeElement`,selectedDamage);
+    }
     spellLevelDropdown.change(updateDamageTypes);
     const insertPoint = html.find($('div[class="form-group"]')).eq(1);
     insertPoint.before(damageTypeDropdown);
@@ -50,17 +55,14 @@ function changeTitle(dialog,html){
         }
         damageTypeUpdatedHtml += `</select>`;
         damageDropDown.replaceWith(damageTypeUpdatedHtml);
-        html.find($('select[name="damageType"]')).change(flagDamage);
-        function flagDamage(){
-            const selectedDamage = html.find($('select[name="damageType"]'))[0].value;
-            dialog.item.options.actor.setFlag("world",`scribeElement`,selectedDamage);
-        }
+        
     };
 
     
 }
 
 function changeDamageType(workflow){
+    
     const elementReplace = workflow.actor.getFlag("world", `scribeElement`);
     if(elementReplace && elementReplace != "nochange"){
         workflow.damageDetail[0].type = elementReplace;
@@ -74,7 +76,7 @@ function changeDamageType(workflow){
   <div class="dice-roll">The damage type was changed to
     <div class="dice-result"><h4 class="dice-total">${elementReplace.charAt(0).toUpperCase() + elementReplace.slice(1)}</h4>
     </div>`;
-    ChatMessage.create({speaker: {alias: workflow.actor.data.name}, content: cont,type: 5});
+    ChatMessage.create({speaker: {alias: workflow.actor.data.name}, content: cont});
 
     } 
     else if(elementReplace == "nochange"){
