@@ -1,10 +1,72 @@
-//await knockback(canvas.tokens.controlled[0],Array.from(game.user.targets)[0],10);
-//await game.macros.getName("macroname").execute(canvas.tokens.get(args[0].tokenId),game.user.targets,5);
-let pusher = args[0];
-let pushed = args[1];
-let knockDist = parseInt(args[2]);
-await knockback(pusher,pushed,knockDist);
+// Shove Macro add as "Shove" execute as GM
+// Item : on use macro ItemMacro
+// Content of itemmacro
+// ITEM MACRO
+/*
+
+
+    
+    let pusher = canvas.tokens.get(args[0].tokenId);
+    let target = Array.from(game.user.targets)[0];
+    let tokenRoll = await pusher.actor.rollSkill("ath");
+    let skill = target.actor.data.data.skills.ath.total < target.actor.data.data.skills.acr.total ? "acr" : "ath";
+    let tactorRoll = await target.actor.rollSkill(skill);
+    
+
+    if (tokenRoll.total > tactorRoll.total) {
+        if(await yesNoPrompt("title","content")){
+            await game.macros.getName("Shove").execute(args[0].tokenId,Array.from(game.user.targets)[0].id);
+        }
+        else{
+            await game.macros.getName("Shove").execute("Prone", Array.from(game.user.targets)[0].id);
+        }
+        
+        }
+
+    async function yesNoPrompt (dTitle,dContent){
+
+        let dialog = new Promise((resolve, reject) => {
+            new Dialog({
+            // localize this text
+            title: `${dTitle}`,
+            content: `<p>${dContent}</p>`,
+            buttons: {
+                one: {
+                    icon: '<i class="fas fa-check"></i>',
+                    label: `Knockback`,
+                    callback: () => {resolve(true)}
+                },
+                two: {
+                    icon: '<i class="fas fa-times"></i>',
+                    label: `Prone`,
+                    callback: () => {resolve(false)}
+                }
+            },
+            default: "two"
+            }).render(true);
+          });
+          let result = await dialog;
+          return result;
+    
+    }
+*/
+/////////////////
+
+
+    
+if(args[0] == "Prone"){
+    await game.cub.addCondition(args[0], canvas.tokens.get(args[1]).actor);  
+    return;
+}
+
+let pusher = canvas.tokens.get(args[0]);
+let target = canvas.tokens.get(args[1]);
+let knockDist = 5;
+knockback(pusher,target,knockDist);
+ 
+
 async function knockback(ptoken,ttoken,distance){
+
 
     const x1 = ptoken.center.x;
     const x2 = ttoken.center.x;
