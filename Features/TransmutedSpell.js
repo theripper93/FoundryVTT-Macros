@@ -2,7 +2,7 @@
 // Add as macro and run once, it will keep running until the client refreshes
 // Do NOT run as GM
 
-const spFeatureName = "Scorcery Points";
+const spFeatureName = "Scorcery Points"; //Feature name that contains the Sorcery Point charges
 const damageTypeList = ["acid", "cold", "fire", "lightning", "poison", "thunder"];
 let damageTypeDropdown = `
 <div class="form-group">
