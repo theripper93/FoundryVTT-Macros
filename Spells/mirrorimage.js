@@ -55,7 +55,7 @@ if(args[0].tag == "OnUse"){
         <h4 class="item-name" text-align=center>Duplicates Remaining</h4>
         <h4 class="dice-total">${mirrorImageUses}</h4>
         </div>`;
-      ChatMessage.create({roll: r,speaker: {alias: tactor.name}, content: cont,type: 5});
+      ChatMessage.create({roll: r,speaker: {alias: tactor.name}, content: cont});
         interruptdamage=true;
       ///////////////////////////
       }
@@ -74,7 +74,7 @@ if(args[0].tag == "OnUse"){
           <h4 class="item-name" text-align=center>Duplicates Remaining</h4>
           <h4 class="dice-total">${mirrorImageUses}</h4>
           </div>`;
-        ChatMessage.create({roll: r,speaker: {alias: tactor.name}, content: cont,type: 5});
+        ChatMessage.create({roll: r,speaker: {alias: tactor.name}, content: cont});
       }
       tactor.setFlag("world",`mirrorImage`,mirrorImageUses);
       if(mirrorImageUses <= 0){
