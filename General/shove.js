@@ -5,7 +5,7 @@
     let pusher = args[0];
     let target = args[1]; 
     let tokenRoll = await pusher.actor.rollSkill("ath");
-    let skill = target.actor.data.data.skills.ath.total < Target.actor.data.data.skills.acr.total ? "acr" : "ath";
+    let skill = target.actor.data.data.skills.ath.total < target.actor.data.data.skills.acr.total ? "acr" : "ath";
     let tactorRoll = await target.actor.rollSkill(Skill);
 
     if (tokenRoll.total > tactorRoll.total) {
@@ -13,7 +13,7 @@
         await game.macros.getName("Knockback").execute(pusher,target,5);
     }
     else{
-        await game.cub.addCondition("Prone", Target.actor);
+        await game.cub.addCondition("Prone", target.actor);
     }
     
     }
