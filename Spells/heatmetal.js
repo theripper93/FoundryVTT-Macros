@@ -14,8 +14,9 @@ if(args[0].tag == "OnUse"){
         return succes;
     
     }
-    const DC = args[0].item.data.save.dc ? args[0].item.data.save.dc : 10;
+    
     let tactor = canvas.tokens.get(args[0].tokenId).actor;
+    const DC = tactor.data.data.attributes.spelldc ? tactor.data.data.attributes.spelldc : 10;
     let itemlevel = args[0].spellLevel;
     let target = canvas.tokens.get(Array.from(game.user.targets)[0].id).actor;
     if(await save(target,"Heat Metal","con","")){
