@@ -4,9 +4,9 @@
 // Content of itemmacro -> await game.macros.getName("Shove").execute(canvas.tokens.get(args[0].tokenId),Array.from(game.user.targets)[0]);
     let pusher = args[0];
     let target = args[1]; 
-    let tokenRoll = await token.actor.rollSkill("ath");
+    let tokenRoll = await pusher.actor.rollSkill("ath");
     let skill = target.actor.data.data.skills.ath.total < Target.actor.data.data.skills.acr.total ? "acr" : "ath";
-    let tactorRoll = await Target.actor.rollSkill(Skill);
+    let tactorRoll = await target.actor.rollSkill(Skill);
 
     if (tokenRoll.total > tactorRoll.total) {
     if(await yesNoPrompt("title","content")){
