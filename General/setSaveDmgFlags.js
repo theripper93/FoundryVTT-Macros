@@ -1,3 +1,6 @@
+//Prompts to set the No dmage on save\full\half flag on items without that option
+//chages it for all items on all actors in the actor directory (not for unlinked tokens on the scene)
+
 let content = `
 <!-- Form Name -->
 <legend>Change the save damage flag for all items in actor directory</legend>
