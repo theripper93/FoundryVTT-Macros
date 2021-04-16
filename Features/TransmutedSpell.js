@@ -1,5 +1,6 @@
 // Macro that lets you change the spell damage type when you cast a spell.
 // Add as macro and run once, it will keep running until the client refreshes
+// Do NOT run as GM
 
 const spFeatureName = "Scorcery Points";
 const damageTypeList = ["acid", "cold", "fire", "lightning", "poison", "thunder"];
