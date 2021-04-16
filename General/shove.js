@@ -1,23 +1,28 @@
 // Shove Macro add as "Shove" execute as GM
 // Item : on use macro ItemMacro
-// Content of itemmacro -> await game.macros.getName("Shove").execute(canvas.tokens.get(args[0].tokenId),Array.from(game.user.targets)[0]);
-    let pusher = args[0];
-    let target = args[1]; 
-    let knockDist = 5;
+// Content of itemmacro
+// ITEM MACRO
+/*
+
+
+    
+    let pusher = canvas.tokens.get(args[0].tokenId);
+    let target = Array.from(game.user.targets)[0];
     let tokenRoll = await pusher.actor.rollSkill("ath");
     let skill = target.actor.data.data.skills.ath.total < target.actor.data.data.skills.acr.total ? "acr" : "ath";
     let tactorRoll = await target.actor.rollSkill(skill);
+    
 
     if (tokenRoll.total > tactorRoll.total) {
-    if(await yesNoPrompt("title","content")){
-        await knockback(pusher,target,knockDist);
-    }
-    else{
-        await game.cub.addCondition("Prone", target.actor);
-    }
-    
-    }
-    
+        if(await yesNoPrompt("title","content")){
+            await game.macros.getName("Shove").execute(args[0].tokenId,Array.from(game.user.targets)[0].id);
+        }
+        else{
+            await game.macros.getName("Shove").execute("Prone", Array.from(game.user.targets)[0].id);
+        }
+        
+        }
+
     async function yesNoPrompt (dTitle,dContent){
 
         let dialog = new Promise((resolve, reject) => {
@@ -44,6 +49,21 @@
           return result;
     
     }
+*/
+/////////////////
+
+
+    
+if(args[0] == "Prone"){
+    await game.cub.addCondition(args[0], canvas.tokens.get(args[1]).actor);  
+    return;
+}
+
+let pusher = canvas.tokens.get(args[0]);
+let target = canvas.tokens.get(args[1]);
+let knockDist = 5;
+knockback(pusher,target,knockDist);
+ 
 
 async function knockback(ptoken,ttoken,distance){
 
