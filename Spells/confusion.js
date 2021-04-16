@@ -28,7 +28,7 @@ if(args[0] == "each" && lastArg.efData.flags.dae.macroRepeat == "startEveryTurn"
     <div class="dice-result">${message}
       <h4 class="dice-total">${r._total}</h4>
       </div>`;
-    ChatMessage.create({roll: r,speaker: {alias: tactor.name}, content: cont,type: 5});
+    ChatMessage.create({roll: r,speaker: {alias: tactor.name}, content: cont});
 
 
 }
