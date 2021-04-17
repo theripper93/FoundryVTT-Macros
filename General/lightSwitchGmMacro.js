@@ -8,7 +8,7 @@ lightToSwitch.update({"hidden": !lightToSwitch.data.hidden});
 // Trigger Happy Setup:
 // Create a token, call it lightswitchtoken (example) give it a transparent image and place it as hidden
 // On your "Trigger Happy" journal entry add the following line
-//  @Token[lightSwitch]@Trigger[click]
+//  @Token[lightswitchtoken]@Trigger[click]
 // the drag the lightSwitchPlayer macro from your hotbar to the journal. it should end up loking something like this
 // but with the correct Id
 // @Token[lightSwitch]@Trigger[click]@Macro[1ENFpqAKMFKgnc5q]{lightSwitchPlayer}
