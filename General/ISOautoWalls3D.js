@@ -41,11 +41,31 @@ let sortedWalls = canvas.walls.controlled.sort(sortWallsY).sort(sortWallsX)
 
     const isDoor = wall.data.door === 1 ? true : false; //first y > second y reverse
     let c = [];
-    if(wall.data.c[2]<wall.data.c[0]){
-      c = [wall.data.c[2],wall.data.c[3],wall.data.c[0],wall.data.c[1]]
+    if(wall.data.c[1]==wall.data.c[3]){
+      if(wall.data.c[2] <= wall.data.c[0]){
+        c = [wall.data.c[2],wall.data.c[3],wall.data.c[0],wall.data.c[1]]
+      }
+      else
+      {
+        c = [wall.data.c[0],wall.data.c[1],wall.data.c[2],wall.data.c[3]]
+      }
+    }    
+    else if(wall.data.c[2]<wall.data.c[0]){
+      if(wall.data.c[1]<wall.data.c[3]){
+        c = [wall.data.c[2],wall.data.c[3],wall.data.c[0],wall.data.c[1]]
+      }
+      else{
+        c = [wall.data.c[0],wall.data.c[1],wall.data.c[2],wall.data.c[3]]
+      }
+      
     }
     else if (wall.data.c[2]>wall.data.c[0]){
-      c = [wall.data.c[0],wall.data.c[1],wall.data.c[2],wall.data.c[3]]
+      if(wall.data.c[1]>wall.data.c[3]){
+        c = [wall.data.c[0],wall.data.c[1],wall.data.c[2],wall.data.c[3]]
+      }
+      else{
+        c = [wall.data.c[2],wall.data.c[3],wall.data.c[0],wall.data.c[1]]
+      }
     }
     else if(wall.data.c[2]==wall.data.c[0]){
       if(wall.data.c[1]>wall.data.c[3]){
