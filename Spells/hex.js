@@ -1,6 +1,3 @@
-//item macro - On use field: ItemMacro
-// add an empty DAE transfer effect to the item
-
 if (args[0].tag === "OnUse") {
     if (args[0].hitTargets.length === 0) return;
     let target = args[0].hitTargets[0]._id;
@@ -22,7 +19,7 @@ if (args[0].tag === "OnUse") {
       ],
       origin: args[0].uuid, //flag the effect as associated to the spell being cast
       disabled: false,
-      duration: args[0].item.effects[0].duration,
+      duration: Array.from(args[0].item.effects)[0].duration,
       icon: args[0].item.img,
       label: args[0].item.name
     }
@@ -32,5 +29,6 @@ if (args[0].tag === "OnUse") {
     if (args[0].isCritical === true) crit = 2;
     let targetId = args[0].hitTargets[0]._id;
     if (targetId !== getProperty(args[0].actor.flags, "midi-qol.Hex")) return {};
+    let damageType = args[0].item.data.damage.parts[0][1];
     return {damageRoll: `${crit}d6[necrotic]`, flavor: "Hex Damage"}
 }
