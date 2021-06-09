@@ -60,7 +60,7 @@ if(args[0] == "off"){
 else if(args[0] == true || args[0] == false){
     
     const ttoken = args[1];
-    await ttoken.setFlag("world",`previousSize`,{width: ttoken.data.width,height: ttoken.data.height,scale: ttoken.data.scale});
+    await ttoken.document.setFlag("world",`previousSize`,{width: ttoken.data.width,height: ttoken.data.height,scale: ttoken.data.scale});
     const bonusdamage = args[0] ? "+1d4" : "-1d4";
     const strabil = args[0] ? "flags.midi-qol.advantage.ability.check.str" : "flags.midi-qol.disadvantage.ability.check.str";
     const strsave = args[0] ? "flags.midi-qol.advantage.ability.save.str" : "flags.midi-qol.disadvantage.ability.save.str";
