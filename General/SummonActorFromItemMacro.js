@@ -39,7 +39,7 @@ let chosencreature = onlyonecreature ? creatures[0] : await choose(creatures, "W
 let numbercreature = shownumberdialog ? await choose(numbers, "How many Creatures do you want to summon?") : defaultnumber;
 
 
-
+debugger
 
 /** intended for use with Item Macro. 'item' here is the spell being cast if using outside Item Macro */
 /** spawns an actor with the same name as the spell at the location of the template */
@@ -54,7 +54,7 @@ let numbercreature = shownumberdialog ? await choose(numbers, "How many Creature
          protoToken.x -= (scene.data.grid/2+(protoToken.width-1)*scene.data.grid);
          protoToken.y -= (scene.data.grid/2+(protoToken.height-1)*scene.data.grid);
         
-         return canvas.tokens.createMany(protoToken,{});
+         return canvas.scene.createEmbeddedDocuments("Token",[protoToken]);
      }
     
     async function deleteTemplatesAndSpawn (scene, template) {
@@ -66,25 +66,9 @@ let numbercreature = shownumberdialog ? await choose(numbers, "How many Creature
         
     
     if (usespelltemplate == false){
-      Hooks.once("createMeasuredTemplate", deleteTemplatesAndSpawn);
-    let template = new game.dnd5e.canvas.AbilityTemplate({
-                t: "circle",
-                user: game.user._id,
-                distance: 3.5,
-                direction: 0,
-                x: 0,
-                y: 0,
-                fillColor: game.user.color
-            });       
-    let tactor = canvas.tokens.placeables.find(a => a.data._id == args[0].tokenId);
-    let item = tactor.actor.items.find(i => i.data._id == args[0].item._id);         
-    template.actorSheet = item.options.actor.sheet;
-    template.drawPreview();
-  }
-  else{
-
-    let template = canvas.templates.placeables.find(t => t.data._id == args[0].templateId).data;
-    deleteTemplatesAndSpawn(canvas.scene, template);
+        for (let i=0;i<parseInt(numbercreature);i++){
+            await spawnActor(canvas.scene,canvas.templates.placeables.map(x=>x).reverse().find(t => t.data.user == game.user.id)?.data || canvas.tokens.get(args[0].tokenId));
+        }
   }
   //create flag to delete summon
   const effectData = {
